@@ -6,7 +6,7 @@ import { Planet } from 'Planet'
 export const App = (): JSX.Element => (
   <BrowserRouter>
     <Nav />
-    <Route path="/:planet" component={Planet} />
-    <Redirect exact path="/" to="/earth" />
+    <Route path="/:planet/:view" component={Planet} />
+    <Redirect exact path="/" to="/earth/overview" />
   </BrowserRouter>
 )

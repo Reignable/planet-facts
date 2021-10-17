@@ -5,7 +5,7 @@ const Nav = (): JSX.Element => (
   <nav>
     <ul>
       {planets.map((planet) => (
-        <Link to={`/${planet}`}>{planet.toUpperCase()}</Link>
+        <Link to={`/${planet}/overview`}>{planet.toUpperCase()}</Link>
       ))}
     </ul>
   </nav>
