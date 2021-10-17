@@ -73,6 +73,12 @@
         "react/jsx-props-no-spreading": "off",
         "react-hooks/exhaustive-deps": "off"
       }
+    },
+    {
+      "files": ["**/*.stories.*"],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
     }
   ]
 }
