@@ -1,15 +1,5 @@
 import { Link } from 'react-router-dom'
-
-const planets = [
-  'mercury',
-  'venus',
-  'earth',
-  'mars',
-  'jupiter',
-  'saturn',
-  'uranus',
-  'neptune',
-]
+import { planets } from 'types'
 
 const Nav = (): JSX.Element => (
   <nav>
