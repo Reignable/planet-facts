@@ -1,0 +1,17 @@
+{
+  "singleQuote": true,
+  "eslintIntegration": true,
+  "semi": false,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "printWidth": 70,
+        "useTabs": false,
+        "semi": false,
+        "trailingComma": "none"
+      }
+    }
+  ]
+}
