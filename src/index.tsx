@@ -1,11 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { worker } from 'mocks/browser'
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
 
+if (process.env.NODE_ENV === 'development') {
+  worker.start()
+}
+
+const queryClient = new QueryClient()
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

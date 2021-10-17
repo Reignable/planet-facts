@@ -11,7 +11,7 @@ const handlers = [
     DefaultRequestBody,
     PlanetInfo | { message: string },
     { planet: string }
-  >(`/:planet`, (req, res, ctx) => {
+  >(`http://localhost:8000/:planet`, (req, res, ctx) => {
     const { planet } = req.params
     if (!isPlanet(planet)) {
       return res(
@@ -19,9 +19,7 @@ const handlers = [
         ctx.json({ message: 'planet param must be a real planet' }),
       )
     }
-    const planetInfo = planetsInfo.find(
-      (planetInfo) => planetInfo.name === planet,
-    )
+    const planetInfo = planetsInfo.find((p) => p.name === planet)
     if (!planetInfo)
       return res(
         ctx.status(404),
