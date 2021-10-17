@@ -1,4 +1,7 @@
+import { Global } from '../src/styles/Global'
+
 export const parameters = {
+  layout: 'fullscreen',
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
@@ -27,3 +30,11 @@ export const parameters = {
     defaultViewport: 'mobile',
   },
 }
+
+export const decorators = [
+  (Story) => (
+    <>
+      <Global /> <Story />
+    </>
+  ),
+]

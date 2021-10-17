@@ -1,7 +1,8 @@
+import { worker } from 'mocks/browser'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { worker } from 'mocks/browser'
+import { Global } from 'styles/Global'
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
 
@@ -15,6 +16,7 @@ ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <App />
+      <Global />
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root'),
