@@ -31,4 +31,4 @@ export default {
   ],
 } as Meta
 
-export const Default = () => <Nav />
+export const Default = (): JSX.Element => <Nav />

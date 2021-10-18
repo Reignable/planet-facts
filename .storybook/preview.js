@@ -41,7 +41,8 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <>
-      <Global /> <Story />
+      <Global />
+      <Story />
     </>
   ),
 ]
