@@ -3,6 +3,7 @@
   "eslintIntegration": true,
   "semi": false,
   "trailingComma": "all",
+  "arrowParens": "avoid",
   "overrides": [
     {
       "files": "*.md",
