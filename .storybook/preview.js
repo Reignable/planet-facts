@@ -3,6 +3,13 @@ import { Global } from '../src/styles/Global'
 export const parameters = {
   layout: 'fullscreen',
   actions: { argTypesRegex: '^on[A-Z].*' },
+  backgrounds: {
+    default: 'dark',
+    values: [
+      { name: 'light', value: '#F8F8F8' },
+      { name: 'dark', value: '#070724' },
+    ],
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
