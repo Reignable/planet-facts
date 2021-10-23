@@ -1,6 +1,11 @@
 import { Global } from '../src/styles/Global'
+import { initializeWorker, mswDecorator } from 'msw-storybook-addon'
+import { handlers } from '../src/mocks/handlers'
+
+initializeWorker()
 
 export const parameters = {
+  msw: handlers,
   layout: 'fullscreen',
   actions: { argTypesRegex: '^on[A-Z].*' },
   backgrounds: {
@@ -39,7 +44,8 @@ export const parameters = {
 }
 
 export const decorators = [
-  (Story) => (
+  mswDecorator,
+  Story => (
     <>
       <Global />
       <Story />

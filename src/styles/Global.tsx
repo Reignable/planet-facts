@@ -1,4 +1,5 @@
 import { css, Global as EmGlobal } from '@emotion/react'
+import background from 'assets/background-stars.svg'
 import { reset } from './reset'
 import { theme } from './theme'
 
@@ -18,6 +19,8 @@ function Global(): JSX.Element {
 
         body {
           background-color: ${theme.colors.background};
+          background-image: url(${background});
+          background-size: 100%;
           color: ${theme.colors.white};
         }
       `}

@@ -1,7 +1,7 @@
 import { Nav } from 'Nav'
 import { BrowserRouter } from 'react-router-dom'
 import { Redirect, Route } from 'react-router'
-import { Planet } from 'Planet'
+import { Planet } from 'Planet/Planet'
 
 export const App = (): JSX.Element => (
   <BrowserRouter>
