@@ -10,6 +10,7 @@ const theme = {
     saturn: '#fccb6b',
     uranus: '#65f0d5',
     neptune: '#497efa',
+    background: '#070724',
   },
   transitions: {
     duration: '150ms',

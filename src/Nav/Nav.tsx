@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useMediaQuery } from 'styles/media-queries'
 import { theme } from 'styles/theme'
 import { planets } from 'types'
-import { ReactComponent as Hamburger } from './icon-hamburger.svg'
 import { ReactComponent as Chevron } from './icon-chevron.svg'
+import { ReactComponent as Hamburger } from './icon-hamburger.svg'
 
 const Header = styled.header`
   display: grid;
@@ -16,11 +16,18 @@ const Header = styled.header`
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
   @media (min-width: 425px) {
-    grid-template-columns: 1fr;
     grid-auto-flow: row;
+    grid-template-columns: 1fr;
     justify-items: center;
     row-gap: 35px;
     padding: 32px 51px 27px;
+  }
+
+  @media (min-width: 1440px) {
+    grid-template-columns: max-content max-content;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 32px 23px;
   }
 `
 
@@ -53,7 +60,7 @@ const List = styled.ul`
   }
 `
 
-const ListItem = styled.li<{ color?: string }>`
+const ListItem = styled.li<{ color?: string; activeLink?: boolean }>`
   padding: 1.25rem 0;
   font-family: 'Spartan', sans-serif;
   font-weight: 700;
@@ -61,11 +68,13 @@ const ListItem = styled.li<{ color?: string }>`
   font-size: 15px;
   letter-spacing: 1.36364px;
   text-transform: uppercase;
-  color: ${theme.colors.white};
+  color: ${props => (props.activeLink ? theme.colors.white : '#c1c1c8')};
   display: grid;
   grid-template-columns: max-content 1fr max-content;
   column-gap: 1.5rem;
   align-items: center;
+  transition: color 150ms ease-in-out;
+  text-decoration: none;
 
   & + & {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -84,6 +93,28 @@ const ListItem = styled.li<{ color?: string }>`
       border: none;
     }
   }
+
+  @media (min-width: 1440px) {
+    position: relative;
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 4px;
+      top: -30px;
+      background: transparent;
+      transition: background-color 150ms ease-in-out;
+    }
+
+    &:hover {
+      color: ${theme.colors.white};
+      &::before {
+        background-color: ${props => props.color};
+      }
+    }
+  }
 `
 
 const ColorCircle = styled.div<{ color?: string }>`
@@ -96,6 +127,7 @@ const ColorCircle = styled.div<{ color?: string }>`
 const Nav = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState(false)
   const isMobile = useMediaQuery({ maxWidth: 425 })
+  const location = useLocation()
 
   const handleMenuButtonClick = () => {
     setMenuOpen(c => !c)
@@ -118,12 +150,16 @@ const Nav = (): JSX.Element => {
             <List>
               {planets.map(planet => (
                 <Link
-                  component={ListItem}
-                  role="link"
-                  to={`/${planet}/overview`}
+                  style={{ textDecoration: 'none' }}
                   key={planet}
+                  to={`/${planet}/overview`}
                 >
-                  {planet.toUpperCase()}
+                  <ListItem
+                    color={theme.colors[planet]}
+                    activeLink={location.pathname.includes(planet)}
+                  >
+                    {planet.toUpperCase()}
+                  </ListItem>
                 </Link>
               ))}
             </List>

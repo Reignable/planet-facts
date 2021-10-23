@@ -1,7 +1,8 @@
 import { css, Global as EmGlobal } from '@emotion/react'
 import { reset } from './reset'
+import { theme } from './theme'
 
-function Global() {
+function Global(): JSX.Element {
   return (
     <EmGlobal
       styles={css`
@@ -10,9 +11,14 @@ function Global() {
         ${reset}
 
         *,
-    *::before,
-    *::after {
+        *::before,
+        *::after {
           box-sizing: border-box;
+        }
+
+        body {
+          background-color: ${theme.colors.background};
+          color: ${theme.colors.white};
         }
       `}
     />
