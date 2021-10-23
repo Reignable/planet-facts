@@ -3,9 +3,9 @@ import { useMediaQuery } from 'react-responsive'
 type Sizes = 'mobile' | 'tablet' | 'desktop'
 
 const breakpoints: { [key in Sizes]: number } = {
-  mobile: 375,
-  tablet: 768,
-  desktop: 1440,
+  mobile: 424,
+  tablet: 767,
+  desktop: 1439,
 }
 
 const mq = {
@@ -13,7 +13,10 @@ const mq = {
     return `(min-width: ${breakpoints[breakpoint]}px)`
   },
   down(breakpoint: Sizes): string {
-    return `(max-width: ${breakpoints[breakpoint]}px)`
+    return `(max-width: ${breakpoints[breakpoint] - 1}px)`
+  },
+  between(breakpointA: Sizes, breakpointB: Sizes): string {
+    return `${this.up(breakpointA)} and ${this.down(breakpointB)}`
   },
 }
 

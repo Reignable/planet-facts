@@ -1,17 +1,27 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useMediaQuery } from 'styles/media-queries'
 import { theme } from 'styles/theme'
 import { planets } from 'types'
 import { ReactComponent as Hamburger } from './icon-hamburger.svg'
 import { ReactComponent as Chevron } from './icon-chevron.svg'
 
 const Header = styled.header`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem 0.75rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  @media (min-width: 425px) {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    justify-items: center;
+    row-gap: 35px;
+    padding: 32px 51px 27px;
+  }
 `
 
 const H2 = styled.h2`
@@ -35,6 +45,12 @@ const IconButton = styled.button<{ menuOpen?: boolean }>`
 
 const List = styled.ul`
   padding: 1.5rem;
+
+  @media (min-width: 425px) {
+    display: flex;
+    column-gap: 30px;
+    padding: 0;
+  }
 `
 
 const ListItem = styled.li<{ color?: string }>`
@@ -58,6 +74,16 @@ const ListItem = styled.li<{ color?: string }>`
   & svg {
     margin-right: 0.5rem;
   }
+
+  @media (min-width: 425px) {
+    display: revert;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding-block: 0;
+    & + & {
+      border: none;
+    }
+  }
 `
 
 const ColorCircle = styled.div<{ color?: string }>`
@@ -69,6 +95,7 @@ const ColorCircle = styled.div<{ color?: string }>`
 
 const Nav = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const isMobile = useMediaQuery({ maxWidth: 425 })
 
   const handleMenuButtonClick = () => {
     setMenuOpen(c => !c)
@@ -78,15 +105,32 @@ const Nav = (): JSX.Element => {
     <>
       <Header>
         <H2>the planets</H2>
-        <IconButton
-          type="button"
-          onClick={handleMenuButtonClick}
-          menuOpen={menuOpen}
-        >
-          <Hamburger />
-        </IconButton>
+        {isMobile ? (
+          <IconButton
+            type="button"
+            onClick={handleMenuButtonClick}
+            menuOpen={menuOpen}
+          >
+            <Hamburger />
+          </IconButton>
+        ) : (
+          <nav>
+            <List>
+              {planets.map(planet => (
+                <Link
+                  component={ListItem}
+                  role="link"
+                  to={`/${planet}/overview`}
+                  key={planet}
+                >
+                  {planet.toUpperCase()}
+                </Link>
+              ))}
+            </List>
+          </nav>
+        )}
       </Header>
-      {menuOpen && (
+      {menuOpen && isMobile && (
         <nav>
           <List>
             {planets.map(planet => (
