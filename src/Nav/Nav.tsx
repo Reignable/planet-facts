@@ -31,7 +31,7 @@ const Header = styled.header`
   }
 `
 
-const H2 = styled.h2`
+const H1 = styled.h1`
   font-family: 'Antonio', sans-serif;
   font-size: 28px;
   line-height: 40px;
@@ -136,7 +136,7 @@ const Nav = (): JSX.Element => {
   return (
     <>
       <Header>
-        <H2>the planets</H2>
+        <H1>the planets</H1>
         {isMobile ? (
           <IconButton
             type="button"
@@ -171,14 +171,15 @@ const Nav = (): JSX.Element => {
           <List>
             {planets.map(planet => (
               <Link
-                component={ListItem}
-                role="link"
+                style={{ textDecoration: 'none' }}
                 to={`/${planet}/overview`}
                 key={planet}
               >
-                <ColorCircle color={theme.colors[planet]} />
-                {planet.toUpperCase()}
-                <Chevron />
+                <ListItem>
+                  <ColorCircle color={theme.colors[planet]} />
+                  {planet.toUpperCase()}
+                  <Chevron />
+                </ListItem>
               </Link>
             ))}
           </List>

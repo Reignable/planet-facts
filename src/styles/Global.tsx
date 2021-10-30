@@ -22,6 +22,7 @@ function Global(): JSX.Element {
           background-image: url(${background});
           background-size: 100%;
           color: ${theme.colors.white};
+          font-family: 'Spartan', sans-serif;
         }
       `}
     />

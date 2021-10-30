@@ -1,5 +1,7 @@
-const Earth = (): JSX.Element => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 450">
+import React from 'react'
+
+const Earth = ({ style }: { style: React.CSSProperties }): JSX.Element => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 450" style={style}>
     <defs>
       <circle id="a" cx="225" cy="225" r="225" />
       <circle id="c" cx="225" cy="225" r="225" />
