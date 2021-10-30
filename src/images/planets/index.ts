@@ -1,0 +1,8 @@
+export { Earth as earth } from './Earth'
+export { Mars as mars } from './Mars'
+export { Mercury as mercury } from './Mercury'
+export { Venus as venus } from './Venus'
+export { Jupiter as jupiter } from './Jupiter'
+export { Saturn as saturn } from './Saturn'
+export { Uranus as uranus } from './Uranus'
+export { Neptune as neptune } from './Neptune'

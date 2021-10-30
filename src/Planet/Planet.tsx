@@ -2,13 +2,13 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { Planet as PlanetType, PlanetInfo } from 'types'
-import { Earth as Image } from 'images/Earth'
+import { Image } from 'images/Image'
 import styled from '@emotion/styled'
 import { theme } from 'styles/theme'
 import { ReactComponent as SourceIcon } from './icon-source.svg'
 
 const Content = styled.div`
-  padding: 0 24px 24px;
+  padding: 0 1.5rem 1.5rem;
 `
 
 const Links = styled.div`
@@ -21,7 +21,7 @@ const Links = styled.div`
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1.93px;
-    padding: 20px 0 16px;
+    padding: 1.25rem 0 1rem;
     &.active {
       color: ${theme.colors.white};
       border-bottom: 4px solid ${props => props.color};
@@ -32,8 +32,8 @@ const Links = styled.div`
 const Text = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 26px;
+  gap: 0.625rem;
+  margin-bottom: 1.625rem;
 `
 
 const H2 = styled.h2`
@@ -78,7 +78,7 @@ const Data = styled.dl`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 24px;
+    padding: 1rem 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
@@ -132,7 +132,7 @@ const Planet = (): JSX.Element => {
         </NavLink>
       </Links>
       <Content>
-        <Image style={{ padding: '64px' }} />
+        <Image planet={planet} type={view} />
         <Text>
           <H2>{planetInfo?.name.toUpperCase()}</H2>
           <P>{planetInfo?.[view].content}</P>
